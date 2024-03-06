@@ -1,126 +1,63 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button, ImageBackground, TextInput } from 'react-native';
 
+// PAGES:
 
 
 
+//   IMPORT STACK NAVIGATION.
+import { NavigationContainer, useNavigation } from '@react-navigation/native';;
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+//
+//Criando uma instancia do STACK NAVIGATOR
+// Isso nos permite utilizar comandos para definir a navegação da aplicacao
+const Stack = createNativeStackNavigator();
 
 
 export default function App() {
 
-  const imagefundo = { uri: 'https://static.vecteezy.com/ti/vetor-gratis/p3/539459-ilustracao-preto-e-branco-do-bodybuilder-do-gorila-vetor.jpg'}
-  const imagereact = { uri: 'https://static.vecteezy.com/ti/vetor-gratis/p3/9472292-gorila-ginasio-logo-premium-vetor.jpg'}
 
 
   return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='About' component={About} />
+        <Stack.Screen name='Contact' component={Contact} />
 
-    <View style={styles.container}>
-    
-
-      <View style={styles.secondaryContainer}>
-      <ImageBackground  style={styles.imagefundo} source={imagefundo} >
-       
-
-        <View style={styles.terciaryContainer}>
-          <Text style={{ fontWeight: 'bold', fontSize: 30, borderBottomWidth: 2, borderBottomColor: 'white'}}>Login</Text>
-        <TextInput style={styles.InputName}
-            placeholder='Seu Nome'
-          />
-          <TextInput style={styles.InputName}
-            placeholder='Sua Senha'
-            secureTextEntry={true}
-          />
-
-          <Button style={styles.btn}
-          title='Pronto'
-
-            />
-          
-         
-        </View>
-
-        <Image source={imagereact} style ={styles.imagereact}/>
-
-        </ImageBackground>
-        
-          
-      </View>
-
-  
-    </View>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
+function Home() {
+  const navigation = useNavigation();
+  const imagefundo = { uri: 'https://static.vecteezy.com/ti/fotos-gratis/p2/6263904-fundo-abstrato-branco-pano-de-fundo-para-design-de-apresentacao-para-site-gratis-foto.jpg' }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-   
-  },
+  return (
+    <ImageBackground source={imagefundo} style={{ flex: 1, width: '100%', }}>
+      <View>
+        <Text>Open up App.js...</Text>
+        <Button title='Sobre' onPress={() => navigation.navigate("Sobre")} />
+      </View>
+    </ImageBackground>
 
-  btn: {
-    color: 'black',
-    backgroundColor: 'grey',
-  },
+  )
+}
 
-  InputName: {
- 
-  borderWidth: 2,
-  borderColor: 'grey',
-  borderRadius: 5,
-  margin: 15,
-  justifyContent: 'center',
-  backgroundColor: 'white',
-  width: '90%',
-  height: '20%',
+function About() {
 
-},
+  const imagefundosobre = { uri: 'https://static.vecteezy.com/ti/vetor-gratis/p1/2059683-branco-abstrato-dinamico-moderno-fundo-terno-para-negocios-instituicao-instituicao-festa-festiva-seminario-e-conversas-vetor.jpg' }
 
-  secondaryContainer: {
-  flex: 1,
-  width: '100%',
-  backgroundColor: 'white',
-  alignItems: 'center',
+  return (
+    <ImageBackground source={imagefundosobre} style={{ flex: 1, width: '100%' }}>
+      <View >
+        <Text>Sobre:</Text>
+      </View>
+    </ImageBackground>
 
-
-},
-
-  terciaryContainer: {
-  
-  backgroundColor: 'grey',
-  borderWidth: 2,
-  borderColor: 'white',
-  backgroundColor: 'red',
-  alignItems: 'center',
-  width: '80%',
-  borderRadius: 15,
-  height: '40%',
-  justifyContent: 'center',
-  marginTop: '1%',
- shadowColor: 'red',
- shadowOpacity: 1,
- shadowRadius: 30,
- opacity: '95%',
-},
-
- imagefundo: {
-  width: '100%',
-  flex: 1,
-  alignItems: 'center',
-  opacity: 30,
-  justifyContent: 'center'
- },
-
- imagereact: {
-    height: 100,
-    width: 100,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    marginTop: '5%',
-    borderRadius: 50,
-    borderWidth: 2,
-    borderColor: 'grey',
-   
- }
-});
+  )
+}
+;
